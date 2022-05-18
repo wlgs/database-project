@@ -1,0 +1,16 @@
+.container {
+    color: white;
+    width: 100vw;
+    min-height: 7vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: url('https://cdn.wallpapersafari.com/31/50/dNQTbX.jpg');
+    user-select: none;
+}
+
+p {
+    text-align: center;
+    margin-right: 30px;
+}

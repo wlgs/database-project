@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: url('https://cdn.wallpapersafari.com/31/50/dNQTbX.jpg');
+  color: white;
+  width: 100vw;
+  min-height: 7vh;
+  padding: 0 10rem;
+}
+
+.brand {
+  font-size: 2em;
+  user-select: none;
+}
+
+.container > div {
+  padding: 0px 20px;
+}
+
+.menu-items {
+  margin-left: auto;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  height: 100%;
+}
+
+ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-size: 1em;
+  transition: all 0.3s ease-out;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a:hover {
+  cursor: pointer;
+  color: #f8e56b;
+}
+
+.username {
+  user-select: none;
+}
+
+.username:hover {
+  color: white;
+  cursor: default;
+}
+
+.active {
+  color: #f8e56b;
+}
+
+.active:hover {
+  color: white;
+}
