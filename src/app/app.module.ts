@@ -9,6 +9,10 @@ import { FooterComponent } from './footer/footer.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { AboutComponent } from './about/about.component';
 import { ReviewComponent } from './review/review.component';
+import { AdminpanelComponent } from './adminpanel/adminpanel.component';
+import { CustomersComponent } from './customers/customers.component';
+import { CustomerpanelComponent } from './customerpanel/customerpanel.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,11 +22,15 @@ import { ReviewComponent } from './review/review.component';
     FooterComponent,
     ReservationComponent,
     AboutComponent,
-    ReviewComponent
+    ReviewComponent,
+    AdminpanelComponent,
+    CustomersComponent,
+    CustomerpanelComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
