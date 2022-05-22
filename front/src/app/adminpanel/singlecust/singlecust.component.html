@@ -18,4 +18,13 @@
           <!-- <button class="back"(click)="onGoBack()">BACK</button> -->
       </div>
   </div>
+  <p class="info" *ngIf="fetchedReservations.length < 1">NO INFO FOUND!</p>
+  <div class="box" *ngIf="fetchedReservations.length >= 1">
+    <div *ngFor="let reservation of fetchedReservations;" class="reservation">
+      <p class="room_id">{{ reservation.room_id }}</p>
+      <p class="status">{{ reservation.status | uppercase}}</p>
+      <p class="start_date">{{ reservation.start_date | uppercase}}</p>
+      <p class="end_date">{{ reservation.end_date | uppercase}}</p>
+    </div>
+  </div>
 </div>

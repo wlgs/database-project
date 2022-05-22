@@ -1,3 +1,25 @@
 <div class="container">
-  UPDATE RESERVATIONS
+  <div class="form-container">
+      <div class="title">UPDATE RESERVATION</div>
+      <form [formGroup]="modelForm">
+          <div class="reservation-details">
+              <input type="text" name="id" formControlName="id" placeholder="id" required>
+              <span *ngIf="formErrors.get('id')">{{ formErrors.get('id') | uppercase}}</span>
+              <input type="text" name="client_id" formControlName="client_id" placeholder="client id" required>
+              <span *ngIf="formErrors.get('client_id')">{{ formErrors.get('client_id') | uppercase}}</span>
+              <input type="text" name="status" formControlName="status" placeholder="status" required>
+              <span *ngIf="formErrors.get('status')">{{ formErrors.get('status') | uppercase}}</span>
+              <input type="number" name="room_id" formControlName="room_id" placeholder="Room ID" required>
+              <span *ngIf="formErrors.get('room_id')">{{ formErrors.get('room_id') | uppercase}}</span>
+              <input onblur="(this.type='text')" onfocus="(this.type = 'date')" type="text" name="start_date" formControlName="start_date" placeholder="Start date" required>
+              <span *ngIf="formErrors.get('start_date')">{{ formErrors.get('start_date') | uppercase}}</span>
+              <input onblur="(this.type='text')" onfocus="(this.type = 'date')" type="text" name="end_date" formControlName="end_date" placeholder="End date" required>
+              <span *ngIf="formErrors.get('end_date')">{{ formErrors.get('end_date') | uppercase}}</span>
+          </div>
+      </form>
+      <div class="buttons">
+          <button class="add" (click)="onSubmit(modelForm)">UPDATE</button>
+          <!-- <button class="back"(click)="onGoBack()">BACK</button> -->
+      </div>
+  </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Reservation } from 'src/app/shared/reservation.model';
 
 @Component({
   selector: 'app-singlecust',
@@ -11,6 +12,7 @@ export class SinglecustComponent implements OnInit {
   modelForm!: FormGroup;
   formErrors:Map<string, string>;
   validationMessages:Map<string, Map<string, string>>;
+  fetchedReservations: Reservation[] = [];
 
   constructor(private router: Router,
     private formBuilder: FormBuilder) {

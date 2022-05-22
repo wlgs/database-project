@@ -13,9 +13,9 @@
               <span *ngIf="formErrors.get('phone')">{{ formErrors.get('phone') | uppercase}}</span>
               <input type="number" name="room_id" formControlName="room_id" placeholder="Room ID" required>
               <span *ngIf="formErrors.get('room_id')">{{ formErrors.get('room_id') | uppercase}}</span>
-              <input type="date" name="start_date" formControlName="start_date" placeholder="Start date" required>
+              <input onblur="(this.type='text')" onfocus="(this.type = 'date')" type="text" name="start_date" formControlName="start_date" placeholder="Start date" required>
               <span *ngIf="formErrors.get('start_date')">{{ formErrors.get('start_date') | uppercase}}</span>
-              <input type="date" name="end_date" formControlName="end_date" placeholder="End date" required>
+              <input onblur="(this.type='text')" onfocus="(this.type = 'date')" type="text" name="end_date" formControlName="end_date" placeholder="End date" required>
               <span *ngIf="formErrors.get('end_date')">{{ formErrors.get('end_date') | uppercase}}</span>
           </div>
       </form>
