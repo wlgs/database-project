@@ -1,8 +1,8 @@
 <div class="container">
   <div class="form-container">
-      <div class="title">MAKE A RESERVATION</div>
+      <div class="title">FIND CUSTOMER RESERVATIONS</div>
       <form [formGroup]="modelForm">
-          <div class="reservation-details">
+          <div class="customer-details">
               <input type="text" name="firstname" formControlName="firstname" placeholder="Firstname" required>
               <span *ngIf="formErrors.get('firstname')">{{ formErrors.get('firstname') | uppercase}}</span>
               <input type="text" name="lastname" formControlName="lastname" placeholder="Lastname" required>
@@ -11,16 +11,10 @@
               <span *ngIf="formErrors.get('email')">{{ formErrors.get('email') | uppercase}}</span>
               <input type="text" name="phone" formControlName="phone" placeholder="Phone" required>
               <span *ngIf="formErrors.get('phone')">{{ formErrors.get('phone') | uppercase}}</span>
-              <input type="number" name="room_id" formControlName="room_id" placeholder="Room ID" required>
-              <span *ngIf="formErrors.get('room_id')">{{ formErrors.get('room_id') | uppercase}}</span>
-              <input type="date" name="start_date" formControlName="start_date" placeholder="Start date" required>
-              <span *ngIf="formErrors.get('start_date')">{{ formErrors.get('start_date') | uppercase}}</span>
-              <input type="date" name="end_date" formControlName="end_date" placeholder="End date" required>
-              <span *ngIf="formErrors.get('end_date')">{{ formErrors.get('end_date') | uppercase}}</span>
           </div>
       </form>
       <div class="buttons">
-          <button class="add" (click)="onSubmit(modelForm)">RESERVE</button>
+          <button class="add" (click)="onSubmit(modelForm)">FIND RESERVATIONS</button>
           <!-- <button class="back"(click)="onGoBack()">BACK</button> -->
       </div>
   </div>

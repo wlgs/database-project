@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Reservation } from '../shared/reservation.model';
 
 @Component({
-  selector: 'app-reservation',
-  templateUrl: './reservation.component.html',
-  styleUrls: ['./reservation.component.css']
+  selector: 'app-singlecust',
+  templateUrl: './singlecust.component.html',
+  styleUrls: ['./singlecust.component.css']
 })
-export class ReservationComponent implements OnInit {
-
+export class SinglecustComponent implements OnInit {
   modelForm!: FormGroup;
   formErrors:Map<string, string>;
   validationMessages:Map<string, Map<string, string>>;
@@ -19,9 +17,6 @@ export class ReservationComponent implements OnInit {
       this.formErrors = new Map([
         ['firstname', ''],
         ['lastname', ''],
-        ['room_id', ''],
-        ['start_date', ''],
-        ['end_date', ''],
         ['email', ''],
         ['phone', '']
       ])
@@ -31,9 +26,6 @@ export class ReservationComponent implements OnInit {
         ['lastname', new Map([['required', 'lastname cannot be blank']])],
         ['email', new Map([['required', 'email cannot be blank']])],
         ['phone', new Map([['required', 'phone cannot be blank']])],
-        ['room_id', new Map([['required', 'room cannot be blank']])],
-        ['start_date', new Map([['required', 'please specify the start date']])],
-        ['end_date', new Map([['required', 'please specify the end date']])],
       ]);
 
     }
@@ -44,9 +36,6 @@ export class ReservationComponent implements OnInit {
       lastname: ['',Validators.required],
       email: ['',Validators.required],
       phone: ['',Validators.required],
-      room_id: ['',Validators.required],
-      start_date: ['',Validators.required],
-      end_date: ['',Validators.required]
     });
 
     this.modelForm.valueChanges
@@ -57,16 +46,8 @@ export class ReservationComponent implements OnInit {
   }
 
   async onSubmit(form: FormGroup) {
-    const newRes: Reservation = {
-        client_id: this.getClientId(),
-        id: this.getReservationId(),
-        status: 'P',
-        room_id: form.value.room_id,
-        start_date: form.value.start_date,
-        end_date: form.value.end_date,
-    }
     if (form.valid) {
-      // dodac rezerwacje
+      // wyswietlic rezerwacje customera albo komunikat ze nie ma takiego
       
       form.reset();
     } else {
@@ -76,16 +57,6 @@ export class ReservationComponent implements OnInit {
 
   onControlValueChanged() {    
     this.checkValidity('check-dirty');
-  }
-
-  getReservationId() {
-    // do zrobienia
-    return 1
-  }
-
-  getClientId() {
-    // do zrobienia
-    return 1
   }
 
   checkValidity(mode:string) {
