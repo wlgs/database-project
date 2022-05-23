@@ -20,6 +20,12 @@
   </div>
   <p class="info" *ngIf="fetchedReservations.length < 1">NO INFO FOUND!</p>
   <div class="box" *ngIf="fetchedReservations.length >= 1">
+    <div class="res_info">
+      <p class="room_id">ROOM ID</p>
+      <p class="status">STATUS</p>
+      <p class="start_date">START DATE</p>
+      <p class="end_date">END DATE</p>
+    </div>
     <div *ngFor="let reservation of fetchedReservations;" class="reservation">
       <p class="room_id">{{ reservation.room_id }}</p>
       <p class="status">{{ reservation.status | uppercase}}</p>

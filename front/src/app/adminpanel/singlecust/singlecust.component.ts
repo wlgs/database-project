@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FakeReservation } from 'src/app/shared/fakereservation';
 import { Reservation } from 'src/app/shared/reservation.model';
 
 @Component({
@@ -48,6 +49,7 @@ export class SinglecustComponent implements OnInit {
   }
 
   async onSubmit(form: FormGroup) {
+    this.fetchedReservations = FakeReservation;
     if (form.valid) {
       // wyswietlic rezerwacje customera albo komunikat ze nie ma takiego
       
