@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "628d0c220a2100ae8a4f07c2",
+    "room_number": 21,
+    "type": "Small apartment"
+  },
+  {
+    "_id": "628d0c227c2e1265bbc10e9a",
+    "room_number": 23,
+    "type": "Small apartment"
+  },
+  {
+    "_id": "628d0c2231688f16ee187dda",
+    "room_number": 24,
+    "type": "Small apartment"
+  }
+]

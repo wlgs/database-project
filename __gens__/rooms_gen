@@ -1,0 +1,38 @@
+[
+    '{{repeat(3)}}',
+    {
+      _id: '{{objectId()}}',
+      room_number: 1,
+      type: "Big apartment"
+    },
+	'{{repeat(3)}}',
+    {
+      _id: '{{objectId()}}',
+      room_number: 1,
+      type: "Small apartment"
+    },
+	'{{repeat(3)}}',
+    {
+      _id: '{{objectId()}}',
+      room_number: 1,
+      type: "Medium apartment"
+    },
+	'{{repeat(3)}}',
+    {
+      _id: '{{objectId()}}',
+      room_number: 1,
+      type: "Single room with balcony"
+    },
+	'{{repeat(3)}}',
+    {
+      _id: '{{objectId()}}',
+      room_number: 1,
+      type: "Double room with balcony"
+    },
+	'{{repeat(3)}}',
+    {
+      _id: '{{objectId()}}',
+      room_number: 1,
+      type: "Kingsize premium apartment"
+    }
+]

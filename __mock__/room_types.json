@@ -1,0 +1,37 @@
+[
+    {
+      "_id": "628d0d2e22b44fb4124bb51d",
+      "type": "Small apartment",
+      "size": 2,
+      "price": 79,
+      "description": "Small apartment, 1 bedroom with 2 beds, 1 bathroom and a nice view to the city."
+    },
+    {
+      "_id": "628d0d2ece9567c2f36e01b7",
+      "type": "Medium apartment",
+      "size": 3,
+      "price": 119,
+      "description": "Medium apartment, 1 bedroom with 3 beds, 1 bathroom and an amusing view onto the mountains."
+    },
+    {
+      "_id": "628d0d2ee597f5ae21500b55",
+      "type": "Single room with balcony",
+      "size": 1,
+      "price": 59,
+      "description": "Room for 1. With balcony. Smokers allowed. 1 Bedroom with 1 bed, 1 kitchen and 1 bathroom. Simple as that."
+    },
+    {
+      "_id": "628d0d2e2dc9f464522aeb46",
+      "type": "Double room with balcony",
+      "size": 2,
+      "price": 99,
+      "description": "Room for 2. With balcony. Smokers NOT allowed. 1 Bedroom with 2 beds, 1 kitchen and 1 bathroom. Complicated as that."
+    },
+    {
+      "_id": "628d0d2e9b4f386adf3c679c",
+      "type": "Kingsize premium apartment",
+      "size": 6,
+      "price": 499,
+      "description": "Our most premium product. The room consists of 3 rooms: 1 bedroom with 4 beds (queen size), 1 kitchen with 2 sinks, and huge party room with disco ball"
+    }
+]
