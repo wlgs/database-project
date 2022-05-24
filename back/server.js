@@ -31,77 +31,77 @@ client.connect(err => {
 
 app.get('/clients/:id', (req, res) => {
     console.log("Got request for -> clients/", req.params.id);
-    col_clients.findOne({_id: req.params.id}, (err, result) =>{
+    col_clients.findOne({ _id: req.params.id }, (err, result) => {
         if (err) throw err;
         res.send(result);
     })
-    
+
 });
 
 app.get('/clients', (req, res) => {
     console.log("Got request for -> /clients");
-    if (req.query.skip == undefined || req.query.limit == undefined){
+    if (req.query.skip == undefined || req.query.limit == undefined) {
         res.status(400).send("Bad params provided");
         return
     }
-    col_clients.find({}).sort({_idx: 1}).limit(Number(req.query.limit)).skip(Number(req.query.skip)).toArray( (err, result) => {
+    col_clients.find({}).sort({ _idx: 1 }).limit(Number(req.query.limit)).skip(Number(req.query.skip)).toArray((err, result) => {
         if (err) throw err;
         res.send(result);
     })
 
-    
-    
+
+
 });
 
 app.get('/reviews', (req, res) => {
     console.log("Got request for -> /reviews");
-    if (req.query.skip == undefined || req.query.limit == undefined){
+    if (req.query.skip == undefined || req.query.limit == undefined) {
         res.status(400).send("Bad params provided");
         return
     }
-    col_reviews.find({}).sort({_idx: 1}).limit(Number(req.query.limit)).skip(Number(req.query.skip)).toArray( (err, result) => {
+    col_reviews.find({}).sort({ _idx: 1 }).limit(Number(req.query.limit)).skip(Number(req.query.skip)).toArray((err, result) => {
         if (err) throw err;
         res.send(result);
     })
-    
+
 });
 
 app.get('/reviews/:id', (req, res) => {
     console.log("Got request for -> reviews/", req.params.id);
-    col_reviews.findOne({_id: req.params.id}, (err, result) =>{
+    col_reviews.findOne({ _id: req.params.id }, (err, result) => {
         if (err) throw err;
         res.send(result);
     })
-    
+
 });
 
 app.get('/rooms_types', (req, res) => {
     console.log("Got request for -> /rooms_types");
-    col_rooms_types.find({}).toArray( (err, result) => {
+    col_rooms_types.find({}).toArray((err, result) => {
         if (err) throw err;
         res.send(result);
     })
-    
+
 });
 
 app.get('/rooms', (req, res) => {
     console.log("Got request for -> /rooms");
-    col_rooms.find({}).toArray( (err, result) => {
+    col_rooms.find({}).toArray((err, result) => {
         if (err) throw err;
         res.send(result);
     })
-    
+
 });
 
 app.get('/rooms/:number', (req, res) => {
     console.log("Got request for -> /rooms/", req.params.number);
-    col_rooms.findOne({room_number: req.params.number}, (err, result) =>{
+    col_rooms.findOne({ room_number: req.params.number }, (err, result) => {
         if (err) throw err;
         res.send(result);
     })
-    
+
 });
 
-app.listen(4200, () => {
-    console.log('Example app listening on port 4200!');
+app.listen(4269, () => {
+    console.log('Example app listening on port 4269!');
 });
