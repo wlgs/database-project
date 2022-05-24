@@ -3,14 +3,8 @@
       <div class="title">FIND YOUR RESERVATIONS</div>
       <form [formGroup]="modelForm">
           <div class="customer-details">
-              <input type="text" name="firstname" formControlName="firstname" placeholder="Firstname" required>
-              <span *ngIf="formErrors.get('firstname')">{{ formErrors.get('firstname') | uppercase}}</span>
-              <input type="text" name="lastname" formControlName="lastname" placeholder="Lastname" required>
-              <span *ngIf="formErrors.get('lastname')">{{ formErrors.get('lastname') | uppercase}}</span>
               <input type="text" name="email" formControlName="email" placeholder="Email" required>
               <span *ngIf="formErrors.get('email')">{{ formErrors.get('email') | uppercase}}</span>
-              <input type="text" name="phone" formControlName="phone" placeholder="Phone" required>
-              <span *ngIf="formErrors.get('phone')">{{ formErrors.get('phone') | uppercase}}</span>
           </div>
       </form>
       <div class="buttons">
@@ -21,14 +15,8 @@
   <p class="ctc" *ngIf="fetchedReservations.length >= 1">CLICK A RESERVATION TO CANCEL IT!</p>
   <p class="info" *ngIf="fetchedReservations.length < 1">NO INFO FOUND!</p>
   <div class="box" *ngIf="fetchedReservations.length >= 1">
-    <div class="res_info">
-      <p class="room_id">ROOM ID</p>
-      <p class="status">STATUS</p>
-      <p class="start_date">START DATE</p>
-      <p class="end_date">END DATE</p>
-    </div>
-    <div *ngFor="let reservation of fetchedReservations;" class="reservation" (click)="cancelReservation(reservation.id)">
-      <p class="room_id">{{ reservation.room_id }}</p>
+    <div *ngFor="let reservation of fetchedReservations;" class="reservation" (click)="cancelReservation(reservation._id)">
+      <p class="room_id">{{ reservation.room_number }}</p>
       <p class="status">{{ reservation.status | uppercase}}</p>
       <p class="start_date">{{ reservation.start_date | uppercase}}</p>
       <p class="end_date">{{ reservation.end_date | uppercase}}</p>

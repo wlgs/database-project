@@ -121,7 +121,7 @@ button:hover {
 }
 
 .reservation, .res_info{
-  width: 20vw;
+  width: 36vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -129,7 +129,7 @@ button:hover {
 }
 
 .reservation p, .res_info p {
-  width: 5vw;
+  width: 8vw;
   display: flex;
 }
 

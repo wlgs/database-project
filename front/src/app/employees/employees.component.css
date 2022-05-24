@@ -46,19 +46,19 @@
 	background-color: #555;
 }
 
-.single-customer, .cust-info{
-  width: 40vw;
+.single-employee, .cust-info{
+  width: 48vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-top: 10px;
 }
 
-.single-customer p, .cust-info p {
-  width: 10vw;
+.single-employee p, .cust-info p {
+  width: 8vw;
   display: flex;
 }
 
-.phone, .email {
+.phone, .email, .work_type, .salary {
   justify-content: flex-end;
 }

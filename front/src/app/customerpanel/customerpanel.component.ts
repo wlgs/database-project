@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
+import { DataService } from '../shared/data.service';
 import { FakeReservation } from '../shared/fakereservation';
 import { Reservation } from '../shared/reservation.model';
 
@@ -13,32 +15,24 @@ export class CustomerpanelComponent implements OnInit {
   modelForm!: FormGroup;
   formErrors:Map<string, string>;
   validationMessages:Map<string, Map<string, string>>;
-  fetchedReservations: Reservation[] = [];
+  fetchedReservations: any = [];
 
-  constructor(private router: Router,
+  constructor(private dataService: DataService,
+    private router: Router,
     private formBuilder: FormBuilder) {
       this.formErrors = new Map([
-        ['firstname', ''],
-        ['lastname', ''],
         ['email', ''],
-        ['phone', '']
       ])
 
       this.validationMessages = new Map([
-        ['firstname', new Map([['required', 'firstname cannot be blank']])],
-        ['lastname', new Map([['required', 'lastname cannot be blank']])],
-        ['email', new Map([['required', 'email cannot be blank']])],
-        ['phone', new Map([['required', 'phone cannot be blank']])],
+        ['email', new Map([['required', 'email cannot be blank']])]
       ]);
 
     }
 
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
-      firstname: ['',Validators.required],
-      lastname: ['',Validators.required],
       email: ['',Validators.required],
-      phone: ['',Validators.required],
     });
 
     this.modelForm.valueChanges
@@ -49,10 +43,16 @@ export class CustomerpanelComponent implements OnInit {
   }
 
   async onSubmit(form: FormGroup) {
-    this.fetchedReservations = FakeReservation;
     if (form.valid) {
       // wyswietlic rezerwacje customera
-      
+      this.fetchedReservations = this.dataService.getClientReservations(form.value.email).pipe(first()).subscribe((res:any) => {
+        res.map((el:any) => {
+          el.start_date = el.start_date.split('T')[0];
+          el.end_date = el.end_date.split('T')[0];
+        });
+        console.log(res);
+        this.fetchedReservations = res;
+    })
       form.reset();
     } else {
       this.checkValidity('ignore-dirty');
@@ -63,8 +63,10 @@ export class CustomerpanelComponent implements OnInit {
     this.checkValidity('check-dirty');
   }
 
-  cancelReservation(id:number) {
-    console.log("RESERVATION NO " + id + " CANCELLED.")
+  cancelReservation(id:string) {
+    this.dataService.cancelReservation(id).pipe(first()).subscribe(res => {
+      console.log(res);
+    });
   }
 
   checkValidity(mode:string) {

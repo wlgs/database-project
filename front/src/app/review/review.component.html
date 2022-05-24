@@ -5,8 +5,8 @@
         <div class="review-details">
             <input type="text" name="name" formControlName="name" placeholder="Name" required>
             <span *ngIf="formErrors.get('name')">{{ formErrors.get('name') | uppercase}}</span>
-            <input type="number" name="room_number" formControlName="room_number" placeholder="Room Number" required>
-            <span *ngIf="formErrors.get('room_number')">{{ formErrors.get('room_number') | uppercase}}</span>
+            <input type="number" name="stars" formControlName="stars" placeholder="Stars" required>
+            <span *ngIf="formErrors.get('stars')">{{ formErrors.get('stars') | uppercase}}</span>
             <textarea rows="6" cols="52.7" type="text" name="description" formControlName="description" placeholder="Description" required></textarea>
             <span *ngIf="formErrors.get('description')">{{ formErrors.get('description') | uppercase}}</span>
         </div>
@@ -18,9 +18,9 @@
 </div>
 <div class="box">
   <div class="review" *ngFor="let review of fetchedReviews">
-    <p class="name"> {{ review.name | uppercase }}</p>
-    <p class="room_number"> {{ review.room_number }}</p>
-    <p class="description"> {{ review.description | uppercase }} </p>
+    <p class="name"> {{ review.client_id | uppercase }}</p>
+    <p class="stars"> {{ review.stars }}/5</p>
+    <p class="description"> {{ review.body | uppercase }} </p>
   </div>
 </div>
 </div>

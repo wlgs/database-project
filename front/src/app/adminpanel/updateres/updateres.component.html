@@ -5,8 +5,6 @@
           <div class="reservation-details">
               <input type="text" name="id" formControlName="id" placeholder="id" required>
               <span *ngIf="formErrors.get('id')">{{ formErrors.get('id') | uppercase}}</span>
-              <input type="text" name="client_id" formControlName="client_id" placeholder="client id" required>
-              <span *ngIf="formErrors.get('client_id')">{{ formErrors.get('client_id') | uppercase}}</span>
               <input type="text" name="status" formControlName="status" placeholder="status" required>
               <span *ngIf="formErrors.get('status')">{{ formErrors.get('status') | uppercase}}</span>
               <input type="number" name="room_id" formControlName="room_id" placeholder="Room ID" required>

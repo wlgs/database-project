@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SinglecustComponent } from './adminpanel/singlecust/singlecust.component';
 import { UpdateresComponent } from './adminpanel/updateres/updateres.component';
 import { CustomersComponent } from './adminpanel/customers/customers.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { EmployeesComponent } from './employees/employees.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +27,16 @@ import { CustomersComponent } from './adminpanel/customers/customers.component';
     CustomerpanelComponent,
     SinglecustComponent,
     UpdateresComponent,
-    CustomersComponent
+    CustomersComponent,
+    EmployeesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

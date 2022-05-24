@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
+import { DataService } from 'src/app/shared/data.service';
 
 @Component({
   selector: 'app-updateres',
@@ -13,22 +15,21 @@ export class UpdateresComponent implements OnInit {
   formErrors:Map<string, string>;
   validationMessages:Map<string, Map<string, string>>;
 
-  constructor(private router: Router,
+  constructor(private dataService: DataService,
+    private router: Router,
     private formBuilder: FormBuilder) {
       this.formErrors = new Map([
         ['id', ''],
         ['status', ''],
-        ['room_id', ''],
+        ['room_type', ''],
         ['start_date', ''],
-        ['end_date', ''],
-        ['client_id', '']
+        ['end_date', '']
       ])
 
       this.validationMessages = new Map([
         ['id', new Map([['required', 'id cannot be blank']])],
-        ['client_id', new Map([['required', 'client id cannot be blank']])],
         ['status', new Map([['required', 'status cannot be blank']])],
-        ['room_id', new Map([['required', 'room cannot be blank']])],
+        ['room_type', new Map([['required', 'room type cannot be blank']])],
         ['start_date', new Map([['required', 'please specify the start date']])],
         ['end_date', new Map([['required', 'please specify the end date']])],
       ]);
@@ -38,9 +39,8 @@ export class UpdateresComponent implements OnInit {
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
       id: ['',Validators.required],
-      client_id: ['',Validators.required],
       status: ['',Validators.required],
-      room_id: ['',Validators.required],
+      room_type: ['',Validators.required],
       start_date: ['',Validators.required],
       end_date: ['',Validators.required]
     });
@@ -54,8 +54,11 @@ export class UpdateresComponent implements OnInit {
 
   async onSubmit(form: FormGroup) {
     if (form.valid) {
-      // update rezerwacji
-      
+      // TODO
+      this.dataService.updateReservation(form.value.id,form.value.start_date,form.value.end_date,form.value.status,form.value.room_id).pipe(first()).subscribe(res => {
+        console.log(res);
+      });
+      console.log('reservation updated!');
       form.reset();
     } else {
       this.checkValidity('ignore-dirty');
@@ -64,16 +67,6 @@ export class UpdateresComponent implements OnInit {
 
   onControlValueChanged() {    
     this.checkValidity('check-dirty');
-  }
-
-  getReservationId() {
-    // do zrobienia
-    return 1
-  }
-
-  getClientId() {
-    // do zrobienia
-    return 1
   }
 
   checkValidity(mode:string) {

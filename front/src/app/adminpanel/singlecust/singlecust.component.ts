@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
+import { DataService } from 'src/app/shared/data.service';
 import { FakeReservation } from 'src/app/shared/fakereservation';
 import { Reservation } from 'src/app/shared/reservation.model';
 
@@ -13,32 +15,24 @@ export class SinglecustComponent implements OnInit {
   modelForm!: FormGroup;
   formErrors:Map<string, string>;
   validationMessages:Map<string, Map<string, string>>;
-  fetchedReservations: Reservation[] = [];
+  fetchedReservations: any = [];
 
   constructor(private router: Router,
+    private dataService: DataService,
     private formBuilder: FormBuilder) {
       this.formErrors = new Map([
-        ['firstname', ''],
-        ['lastname', ''],
-        ['email', ''],
-        ['phone', '']
+        ['email', '']
       ])
 
       this.validationMessages = new Map([
-        ['firstname', new Map([['required', 'firstname cannot be blank']])],
-        ['lastname', new Map([['required', 'lastname cannot be blank']])],
-        ['email', new Map([['required', 'email cannot be blank']])],
-        ['phone', new Map([['required', 'phone cannot be blank']])],
+        ['email', new Map([['required', 'email cannot be blank']])]
       ]);
 
     }
 
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
-      firstname: ['',Validators.required],
-      lastname: ['',Validators.required],
       email: ['',Validators.required],
-      phone: ['',Validators.required],
     });
 
     this.modelForm.valueChanges
@@ -49,10 +43,17 @@ export class SinglecustComponent implements OnInit {
   }
 
   async onSubmit(form: FormGroup) {
-    this.fetchedReservations = FakeReservation;
     if (form.valid) {
       // wyswietlic rezerwacje customera albo komunikat ze nie ma takiego
-      
+      this.fetchedReservations = this.dataService.getClientReservations(form.value.email).pipe(first()).subscribe((res:any) => {
+        res.map((el:any) => {
+          el.start_date = el.start_date.split('T')[0];
+          el.end_date = el.end_date.split('T')[0];
+        });
+        this.fetchedReservations = res;
+        console.log(res);
+      });
+      console.log('reservations found!');
       form.reset();
     } else {
       this.checkValidity('ignore-dirty');

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
+import { DataService } from '../shared/data.service';
 import { FakeReview } from '../shared/fakereview';
 import { Review } from '../shared/review.model';
 
@@ -10,30 +12,34 @@ import { Review } from '../shared/review.model';
   styleUrls: ['./review.component.css']
 })
 export class ReviewComponent implements OnInit {
-  fetchedReviews: Review[] = [];
+  fetchedReviews: any = [];
   modelForm!: FormGroup;
   formErrors:Map<string, string>;
   validationMessages:Map<string, Map<string, string>>;
-  constructor(private router: Router,
+  constructor(private dataService: DataService,
+    private router: Router,
     private formBuilder: FormBuilder) {
       this.formErrors = new Map([
         ['name', ''],
-        ['room_number', ''],
+        ['stars', ''],
         ['description', '']
       ])
 
       this.validationMessages = new Map([
         ['name', new Map([['required', 'name cannot be blank']])],
-        ['room_number', new Map([['required', 'room number cannot be blank']])],
+        ['stars', new Map([['required', 'stars cannot be blank']])],
         ['description', new Map([['required', 'description cannot be blank']])],
       ]);
 
     }
 
   ngOnInit(): void {
+    this.dataService.getReviews().pipe(first()).subscribe(res => {
+      this.fetchedReviews = res;
+    });
     this.modelForm = this.formBuilder.group({
       name: ['',Validators.required],
-      room_number: ['',Validators.required],
+      stars: ['',Validators.required],
       description: ['',Validators.required]
     });
 
@@ -45,9 +51,10 @@ export class ReviewComponent implements OnInit {
   }
 
   async onSubmit(form: FormGroup) {
-    this.fetchedReviews = FakeReview;
     if (form.valid) {
       // dodac recenzje
+      this.dataService.postReview(form.value.name,form.value.stars,form.value.description).subscribe(data => {
+      });
       form.reset();
     } else {
       this.checkValidity('ignore-dirty');

@@ -1,5 +1,5 @@
 export interface Review {
   name: string,
-  room_number: number,
+  stars: number,
   description: string
 }

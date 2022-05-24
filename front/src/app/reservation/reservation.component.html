@@ -3,16 +3,10 @@
       <div class="title">MAKE A RESERVATION</div>
       <form [formGroup]="modelForm">
           <div class="reservation-details">
-              <input type="text" name="firstname" formControlName="firstname" placeholder="Firstname" required>
-              <span *ngIf="formErrors.get('firstname')">{{ formErrors.get('firstname') | uppercase}}</span>
-              <input type="text" name="lastname" formControlName="lastname" placeholder="Lastname" required>
-              <span *ngIf="formErrors.get('lastname')">{{ formErrors.get('lastname') | uppercase}}</span>
               <input type="text" name="email" formControlName="email" placeholder="Email" required>
               <span *ngIf="formErrors.get('email')">{{ formErrors.get('email') | uppercase}}</span>
-              <input type="text" name="phone" formControlName="phone" placeholder="Phone" required>
-              <span *ngIf="formErrors.get('phone')">{{ formErrors.get('phone') | uppercase}}</span>
-              <input type="number" name="room_id" formControlName="room_id" placeholder="Room ID" required>
-              <span *ngIf="formErrors.get('room_id')">{{ formErrors.get('room_id') | uppercase}}</span>
+              <input type="number" name="room_type" formControlName="room_type"e placeholder="Room Type" required>
+              <span *ngIf="formErrors.get('room_type')">{{ formErrors.get('room_type') | uppercase}}</span>
               <input onblur="(this.type='text')" onfocus="(this.type = 'date')" type="text" name="start_date" formControlName="start_date" placeholder="Start date" required>
               <span *ngIf="formErrors.get('start_date')">{{ formErrors.get('start_date') | uppercase}}</span>
               <input onblur="(this.type='text')" onfocus="(this.type = 'date')" type="text" name="end_date" formControlName="end_date" placeholder="End date" required>
