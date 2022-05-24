@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "628d0bff9c2b0db08c94a32e",
+    "room_number": 12,
+    "type": "Big apartment"
+  },
+  {
+    "_id": "628d0bffaab33a176aa2d0ee",
+    "room_number": 13,
+    "type": "Big apartment"
+  },
+  {
+    "_id": "628d0bff229e332f73c3ae59",
+    "room_number": 14,
+    "type": "Big apartment"
+  }
+]

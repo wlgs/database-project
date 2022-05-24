@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "628d0c367c4b8cfde62c5297",
+    "room_number": 44,
+    "type": "Single room with balcony"
+  },
+  {
+    "_id": "628d0c36d1050831a84825f1",
+    "room_number": 45,
+    "type": "Single room with balcony"
+  },
+  {
+    "_id": "628d0c36d8eaaf566519cdf2",
+    "room_number": 47,
+    "type": "Single room with balcony"
+  }
+]

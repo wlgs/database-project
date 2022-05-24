@@ -1,0 +1,42 @@
+[
+    {
+      "_id": "628d101398e88560beb96209",
+      "client_id": "628ce5dd083d2f4ce29f3487",
+      "start_date": "2022-05-04T05:33:17 -02:00",
+      "end_date": "2022-05-06T04:19:27 -02:00",
+      "status": "pending",
+      "room_number": 36
+    },
+    {
+      "_id": "628d1013c7d165a9b8069e74",
+      "client_id": "628ce5dd0ed2481799e0683a",
+      "start_date": "2022-05-02T08:58:13 -02:00",
+      "end_date": "2022-05-11T01:59:06 -02:00",
+      "status": "paid",
+      "room_number": 97
+    },
+    {
+      "_id": "628d1013514b2899f6d6b6f1",
+      "client_id": "628ce5dd0ed2481799e0683a",
+      "start_date": "2022-05-09T07:36:30 -02:00",
+      "end_date": "2022-05-10T11:30:45 -02:00",
+      "status": "canceled",
+      "room_number": 98
+    },
+    {
+      "_id": "628d10139a3f64758fbf4057",
+      "client_id": "628ce5dd2db019649005ce90",
+      "start_date": "2022-05-12T05:21:10 -02:00",
+      "end_date": "2022-05-21T12:13:52 -02:00",
+      "status": "paid",
+      "room_number": 44
+    },
+    {
+      "_id": "628d101397229a180449caa0",
+      "client_id": "628ce5dd2dde7877bccb4265",
+      "start_date": "2022-05-11T06:45:28 -02:00",
+      "end_date": "2022-05-14T02:21:10 -02:00",
+      "status": "paid",
+      "room_number": 45
+    }
+  ]
