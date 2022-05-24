@@ -1,0 +1,12 @@
+[
+  '{{repeat(10000)}}',
+  {
+    _id: '{{objectId()}}',
+    firstname: '{{firstName()}}',
+    lastname: '{{surname()}}',
+    email: '{{email()}}',
+    phone: '+48 {{phone()}}',
+    address: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',
+    registered: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+  }
+]

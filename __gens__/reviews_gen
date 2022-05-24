@@ -1,0 +1,9 @@
+[
+    '{{repeat(10)}}',
+    {
+      _id: '{{objectId()}}',
+      client_id: '{{objectId()}}',
+      stars: '{{floating(1,5,1,"0.0")}}',
+      body: '{{lorem(60, "words")}}'
+    }
+]

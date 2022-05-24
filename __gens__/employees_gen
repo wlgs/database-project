@@ -1,5 +1,5 @@
 [
-    '{{repeat(100)}}',
+    '{{repeat(10)}}',
     {
       _id: '{{objectId()}}',
       firstname: '{{firstName()}}',
@@ -8,5 +8,7 @@
       phone: '+48 {{phone()}}',
       address: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',
       registered: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+      work_type: 'service',
+      salary: '{{integer(2100,5500)}}'
     }
 ]
