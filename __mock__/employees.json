@@ -1,0 +1,112 @@
+[
+  {
+    "_id": "628cdc66ccc99a1fa90c6916",
+    "firstname": "Adrian",
+    "lastname": "<ReferenceError: lastname is not defined>",
+    "email": "adrianferguson@digigen.com",
+    "phone": "+48 (826) 506-3200",
+    "address": "745 Oceanview Avenue, Bascom, Louisiana, 7752",
+    "registered": "2014-05-20T05:45:25 -02:00",
+    "work_type": "service",
+    "salary": 3671
+  },
+  {
+    "_id": "628cdc667820eae308427946",
+    "firstname": "Candace",
+    "lastname": "<ReferenceError: lastname is not defined>",
+    "email": "candaceferguson@digigen.com",
+    "phone": "+48 (827) 442-2767",
+    "address": "891 Newel Street, Calvary, New York, 3396",
+    "registered": "2016-04-28T01:08:34 -02:00",
+    "work_type": "service",
+    "salary": 4010
+  },
+  {
+    "_id": "628cdc66933da89de4e8667c",
+    "firstname": "Lacey",
+    "lastname": "<ReferenceError: lastname is not defined>",
+    "email": "laceyferguson@digigen.com",
+    "phone": "+48 (883) 490-2525",
+    "address": "341 Eckford Street, Dotsero, Maryland, 7638",
+    "registered": "2021-11-13T02:35:24 -01:00",
+    "work_type": "service",
+    "salary": 4669
+  },
+  {
+    "_id": "628cdc667257f24bd7a3073d",
+    "firstname": "Cooper",
+    "lastname": "<ReferenceError: lastname is not defined>",
+    "email": "cooperferguson@digigen.com",
+    "phone": "+48 (974) 496-2740",
+    "address": "307 Louisiana Avenue, Riceville, Maine, 593",
+    "registered": "2019-08-10T03:14:14 -02:00",
+    "work_type": "service",
+    "salary": 3675
+  },
+  {
+    "_id": "628cdc667e0be3e96ec2bacd",
+    "firstname": "Sheena",
+    "lastname": "<ReferenceError: lastname is not defined>",
+    "email": "sheenaferguson@digigen.com",
+    "phone": "+48 (960) 437-2951",
+    "address": "125 Withers Street, Cornfields, Washington, 1653",
+    "registered": "2015-08-23T01:34:00 -02:00",
+    "work_type": "service",
+    "salary": 2252
+  },
+  {
+    "_id": "628cdc66a5ad48a08456534b",
+    "firstname": "Yang",
+    "lastname": "<ReferenceError: lastname is not defined>",
+    "email": "yangferguson@digigen.com",
+    "phone": "+48 (984) 561-3796",
+    "address": "474 Post Court, Glasgow, Minnesota, 3601",
+    "registered": "2020-11-19T11:16:36 -01:00",
+    "work_type": "service",
+    "salary": 2367
+  },
+  {
+    "_id": "628cdc660a59296a1b7add4e",
+    "firstname": "Hull",
+    "lastname": "<ReferenceError: lastname is not defined>",
+    "email": "hullferguson@digigen.com",
+    "phone": "+48 (956) 442-3280",
+    "address": "411 Duryea Court, Bladensburg, American Samoa, 2908",
+    "registered": "2015-11-17T08:10:40 -01:00",
+    "work_type": "service",
+    "salary": 2824
+  },
+  {
+    "_id": "628cdc66edd5f848e8acf243",
+    "firstname": "Goff",
+    "lastname": "<ReferenceError: lastname is not defined>",
+    "email": "goffferguson@digigen.com",
+    "phone": "+48 (950) 421-2873",
+    "address": "471 Ellery Street, Jessie, Rhode Island, 3155",
+    "registered": "2014-11-22T06:22:59 -01:00",
+    "work_type": "service",
+    "salary": 5151
+  },
+  {
+    "_id": "628cdc663a6c60e9c7225842",
+    "firstname": "Lucas",
+    "lastname": "<ReferenceError: lastname is not defined>",
+    "email": "lucasferguson@digigen.com",
+    "phone": "+48 (989) 480-3059",
+    "address": "847 Aurelia Court, Roulette, Texas, 4203",
+    "registered": "2021-10-16T07:42:19 -02:00",
+    "work_type": "service",
+    "salary": 3477
+  },
+  {
+    "_id": "628cdc66cdeab527c341e95c",
+    "firstname": "Antonia",
+    "lastname": "<ReferenceError: lastname is not defined>",
+    "email": "antoniaferguson@digigen.com",
+    "phone": "+48 (963) 510-3678",
+    "address": "269 Crystal Street, Williams, Utah, 9077",
+    "registered": "2018-02-28T12:49:02 -01:00",
+    "work_type": "service",
+    "salary": 2443
+  }
+]
