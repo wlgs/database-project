@@ -179,4 +179,146 @@ Dane pochodzą z odpowiedniego triggera - w dokumencie mamy pełne informacje o 
 
 ### Backend
 
-todo...
+Z ciekawszych zapytań, które kierujemy do bazy (odpowiednie query):
+
+#### wykonanie joina na reviews oraz clients
+
+Dzieki takiemu joinowi mamy dostęp do dokumentów reviews wraz z pełną informacją o danym kliencie
+
+```mongodb
+db.reviews.aggregate(
+  [
+    {
+      $lookup: {
+        from: 'clients',
+        localField: 'client_id',
+        foreignField: '_id',
+        as: 'dataArr'
+      }
+    },
+    {
+      $match: {
+        'dataArr': {$ne: []}
+      }
+    }
+  ]
+)
+```
+
+#### rezerwacje aktywne danego dnia
+
+Uwaga: pomijamy rezerwacje które mają status `canceled`
+
+```mongodb
+db.reservations.aggregate([
+    {
+        $project:{
+            start_date: {
+                $toDate: "$start_date"
+            },
+            end_date:{
+                $toDate: '$end_date'
+            },
+            status: '$status',
+            room_number: '$room_number'
+        }
+    },
+    {
+        $match: {
+          'start_date': {$lte: ISODate('2022-05-07')}
+        }
+    },
+    {
+        $match: {
+          'end_date': {$gte: ISODate('2022-05-07')}
+        }
+    },
+    {
+        $match: {
+            'status': {$not: {$eq: 'canceled'}}
+        }
+    }
+])
+```
+
+#### pokoje i ich historie rezerwacji
+
+Otrzymujemy pokoje wraz z ich rezerwacjami, które kiedykolwiek wystąpiły
+
+```mongodb
+db.rooms.aggregate([
+    {
+        $lookup: {
+          from: 'reservations',
+          localField: 'room_number',
+          foreignField: 'room_number',
+          as: 'dataArr'
+        }
+    }
+])
+```
+
+#### zwrócenie wolnych pokoi
+
+Bazujemy na danym przedziale czasu, oraz typie pokoju - odpowiednie zmienne:
+* `type`
+* `start_date`
+* `end_date`
+
+```mongodb
+db.rooms.aggregate([
+    {
+        $lookup: {
+          from: 'reservations',
+          localField: 'room_number',
+          foreignField: 'room_number',
+          as: 'dataArr'
+        }
+    },
+    {
+        $project: {
+            room_number: '$room_number',
+            type: '$type',
+            dataArr: {$map: {
+                input: '$dataArr',
+                as: 'dataEl',
+                in: {
+                    start_date: {
+                    $toDate: "$$dataEl.start_date"
+                        },
+                    end_date: {
+                    $toDate: "$$dataEl.end_date"
+                        },
+                    status: "$$dataEl.status"
+                }
+            }}
+        }
+    },
+    {
+        $match:{
+            $or: [{'dataArr': {$not: {
+                $elemMatch: {
+                    $or: [{start_date: {$gte: ISODate('2022-05-07'), $lte: ISODate('2022-05-08')}},
+                    {end_date: {$gte: ISODate('2022-05-07'), $lte: ISODate('2022-05-08')}}],
+                    
+                    }}}
+                },
+                {
+                    'dataArr': {$elemMatch: {$or: [{status: 'canceled'}, {status: 'pending'}]} }}]               
+        }
+    },
+    {
+        $match: {
+            'type': 'Single room with balcony'
+        }
+    }
+])
+```
+
+#### pozostałe
+
+Pozostałe query bazowały na prostym `find`
+
+### Backend - endpointy
+
+tba...
