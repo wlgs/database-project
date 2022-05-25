@@ -33,6 +33,7 @@ export class ReviewComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getReviews().pipe(first()).subscribe(res => {
       this.fetchedReviews = res;
+      console.log(res);
     });
     this.modelForm = this.formBuilder.group({
       name: ['',Validators.required],

@@ -31,18 +31,27 @@ export class DataService {
     return this.http.patch(`${url}/reservations/${id}`,{status: 'canceled'});
   }
 
-  //TEST
-  updateReservation(id:string, start_date: string, end_date: string, status: string, room_id: string) {
-    return this.http.patch(`${url}/reviews/${id}`,{start_date: start_date, end_date: end_date, status: status, room_number: room_id});
+  acceptReservation(id:string) {
+    return this.http.patch(`${url}/reservations/${id}`,{status: 'paid'});
   }
 
-  //TEST
   makeReservation(start_date: string, end_date: string, room_type:string, email:string) {
-    return this.http.post(`${url}/reservations`,{start_date: start_date, end_date: end_date, room_type: room_type, email: email});
+    return this.http.post(`${url}/reservations`,{start_date: start_date, end_date: end_date, type: room_type, email: email});
   }
 
-  //TEST
   getEmployees() {
     return this.http.get(`${url}/employees?skip=0&limit=1000`);
+  }
+
+  getFreeRoomsByDay(from: string,to: string) {
+    return this.http.get(`${url}/rooms/${from}/${to}`);
+  }
+
+  getActiveReservationsByDay(date:string) {
+    return this.http.get(`${url}/reservations/${date}`);
+  }
+
+  getRoomTypes() {
+    return this.http.get(`${url}/rooms_types`);
   }
 }

@@ -49,7 +49,10 @@ export class ReservationComponent implements OnInit {
 
   async onSubmit(form: FormGroup) {
     if (form.valid) {
-      // dodac rezerwacje
+      console.log(form.value.start_date);
+      console.log(form.value.end_date);
+      console.log(form.value.room_type);
+      console.log(form.value.email);
       this.dataService.makeReservation(form.value.start_date,form.value.end_date,form.value.room_type,form.value.email).pipe(first()).subscribe(res => {
         console.log(res);
       })

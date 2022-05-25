@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="box">
+    <div *ngFor="let room of fetchedRooms;" class="room">
+      <p class="type">{{ room.type | uppercase }}</p>
+      <p class="price">PRICE: {{ room.price }}</p>
+      <p class="size">SIZE: {{ room.size }}</p>
+      <p class="description">{{ room.description | uppercase }}</p>
+    </div>
+  </div>
+</div>

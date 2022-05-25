@@ -1,7 +1,7 @@
 <div class="container">
   <p *ngIf="fetchedEmployees.length < 1"> NO EMPLOYEES YET!</p>
   <div class="box">
-    <div *ngFor="let employee of fetchedEmployees;" class="single-customer">
+    <div *ngFor="let employee of fetchedEmployees;" class="single-employee">
       <p class="firstname">{{ employee.firstname | uppercase}}</p>
       <p class="lastname">{{ employee.lastname | uppercase}}</p>
       <p class="email">{{ employee.email | uppercase}}</p>

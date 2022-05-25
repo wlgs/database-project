@@ -1,10 +1,12 @@
 <div class="container">
   <div class="form-container">
-      <div class="title">FIND RESERVATIONS BY DATE</div>
+      <div class="title">FIND FREE ROOMS BY DATE</div>
       <form [formGroup]="modelForm">
           <div class="reservation-details">
               <input onblur="(this.type='text')" onfocus="(this.type = 'date')" type="text" name="start_date" formControlName="start_date" placeholder="Start date" required>
               <span *ngIf="formErrors.get('start_date')">{{ formErrors.get('start_date') | uppercase}}</span>
+              <input onblur="(this.type='text')" onfocus="(this.type = 'date')" type="text" name="end_date" formControlName="end_date" placeholder="End date" required>
+              <span *ngIf="formErrors.get('end_date')">{{ formErrors.get('end_date') | uppercase}}</span>
           </div>
       </form>
       <div class="buttons">
@@ -12,13 +14,11 @@
           <!-- <button class="back"(click)="onGoBack()">BACK</button> -->
       </div>
   </div>
-  <p class="info" *ngIf="fetchedReservations.length < 1"> NO RESERVATIONS YET!</p>
+  <p class="info" *ngIf="fetchedRooms.length < 1"> NO FREE ROOMS IN THIS DATE!</p>
   <div class="box">
-    <div *ngFor="let reservation of fetchedReservations;" class="reservation">
-        <p class="room_id">{{ reservation.room_number }}</p>
-        <p class="status">{{ reservation.status | uppercase}}</p>
-        <p class="start_date">{{ reservation.start_date | uppercase}}</p>
-        <p class="end_date">{{ reservation.end_date | uppercase}}</p>
+    <div *ngFor="let room of fetchedRooms;" class="room">
+        <p class="room_number">{{ room.room_number }}</p>
+        <p class="type">{{ room.type | uppercase}}</p>
     </div>
   </div>
 </div>

@@ -15,6 +15,8 @@ import { UpdateresComponent } from './adminpanel/updateres/updateres.component';
 import { CustomersComponent } from './adminpanel/customers/customers.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { EmployeesComponent } from './employees/employees.component';
+import { FreeroomsComponent } from './freerooms/freerooms.component';
+import { RoomstypesComponent } from './roomstypes/roomstypes.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { EmployeesComponent } from './employees/employees.component';
     SinglecustComponent,
     UpdateresComponent,
     CustomersComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    FreeroomsComponent,
+    RoomstypesComponent
   ],
   imports: [
     BrowserModule,

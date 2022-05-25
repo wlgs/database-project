@@ -4,9 +4,9 @@
       <form [formGroup]="modelForm">
           <div class="reservation-details">
               <input type="text" name="email" formControlName="email" placeholder="Email" required>
-              <span *ngIf="formErrors.get('email')">{{ formErrors.get('email') | uppercase}}</span>
-              <input type="number" name="room_type" formControlName="room_type"e placeholder="Room Type" required>
-              <span *ngIf="formErrors.get('room_type')">{{ formErrors.get('room_type') | uppercase}}</span>
+              <span *ngIf="formErrors.get('email')">{{ formErrors.get('email')}}</span>
+              <input type="text" name="room_type" formControlName="room_type"e placeholder="Room Type" required>
+              <span *ngIf="formErrors.get('room_type')">{{ formErrors.get('room_type')}}</span>
               <input onblur="(this.type='text')" onfocus="(this.type = 'date')" type="text" name="start_date" formControlName="start_date" placeholder="Start date" required>
               <span *ngIf="formErrors.get('start_date')">{{ formErrors.get('start_date') | uppercase}}</span>
               <input onblur="(this.type='text')" onfocus="(this.type = 'date')" type="text" name="end_date" formControlName="end_date" placeholder="End date" required>

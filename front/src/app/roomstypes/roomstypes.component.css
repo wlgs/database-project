@@ -19,46 +19,30 @@
   margin-bottom: 5vh;
   margin-left: auto;
   margin-right: auto;
+  min-height: 50vh;
   max-height: 70vh;
-  overflow-y: scroll;
   padding-right: 20px;
   padding-left: 20px;
   cursor: default;
 }
 
-.box::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #f8e56b;
-}
-
-.box::-webkit-scrollbar
-{
-	width: 8px;
-	background-color: #f8e56b;
-}
-
-.box::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #555;
-}
-
-.single-employee, .cust-info{
-  width: 54vw;
+.room, .cust-info{
+  width: 80vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
-.single-employee p, .cust-info p {
-  width: 9vw;
+.room p, .cust-info p {
+  width: 10vw;
   display: flex;
 }
 
-.phone, .email, .work_type, .salary {
-  justify-content: flex-end;
+.room .description {
+  width: 40vw;
+}
+
+.size, .description {
+  justify-content: flex-start;
 }

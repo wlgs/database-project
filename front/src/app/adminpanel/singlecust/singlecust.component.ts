@@ -38,6 +38,12 @@ export class SinglecustComponent implements OnInit {
     this.onControlValueChanged();
   }
 
+  acceptReservation(id:string) {
+    this.dataService.acceptReservation(id).pipe(first()).subscribe(res => {
+      console.log(res);
+    });
+  }
+
   async onSubmit(form: FormGroup) {
     if (form.valid) {
       this.fetchedReservations = this.dataService.getClientReservations(form.value.email).pipe(first()).subscribe((res:any) => {

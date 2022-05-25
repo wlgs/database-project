@@ -12,9 +12,10 @@
           <!-- <button class="back"(click)="onGoBack()">BACK</button> -->
       </div>
   </div>
+  <p class="ctc" *ngIf="fetchedReservations.length >= 1">CLICK A RESERVATION TO ACCEPT IT!</p>
   <p class="info" *ngIf="fetchedReservations.length < 1">NO INFO FOUND!</p>
   <div class="box" *ngIf="fetchedReservations.length >= 1">
-    <div *ngFor="let reservation of fetchedReservations;" class="reservation">
+    <div *ngFor="let reservation of fetchedReservations;" class="reservation" (click)="acceptReservation(reservation._id)">
       <p class="room_id">{{ reservation.room_number }}</p>
       <p class="status">{{ reservation.status | uppercase}}</p>
       <p class="start_date">{{ reservation.start_date | uppercase }}</p>

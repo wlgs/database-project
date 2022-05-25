@@ -6,8 +6,10 @@ import { SinglecustComponent } from './adminpanel/singlecust/singlecust.componen
 import { UpdateresComponent } from './adminpanel/updateres/updateres.component';
 import { CustomerpanelComponent } from './customerpanel/customerpanel.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { FreeroomsComponent } from './freerooms/freerooms.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { ReviewComponent } from './review/review.component';
+import { RoomstypesComponent } from './roomstypes/roomstypes.component';
 
 const routes: Routes = [
   {path: '', component:ReservationComponent},
@@ -17,7 +19,9 @@ const routes: Routes = [
   {path: 'adminpanel/customers', component:CustomersComponent},
   {path: 'adminpanel/singlecust', component:SinglecustComponent},
   {path: 'adminpanel/updateres', component:UpdateresComponent},
-  {path: 'employees', component:EmployeesComponent}
+  {path: 'employees', component:EmployeesComponent},
+  {path: 'freerooms', component:FreeroomsComponent},
+  {path: 'roomstypes', component:RoomstypesComponent}
 ];
 
 @NgModule({
