@@ -176,3 +176,7 @@ Przykładowe dokumenty - tu przykład na kolekcji `logs-reservations`
 ```
 
 Dane pochodzą z odpowiedniego triggera - w dokumencie mamy pełne informacje o zmianie - możemy łatwo odtworzyć lub zrevertować zmianę.
+
+### Backend
+
+todo...
