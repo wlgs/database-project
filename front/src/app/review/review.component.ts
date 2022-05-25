@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { DataService } from '../shared/data.service';
-import { FakeReview } from '../shared/fakereview';
-import { Review } from '../shared/review.model';
 
 @Component({
   selector: 'app-review',
@@ -16,8 +13,8 @@ export class ReviewComponent implements OnInit {
   modelForm!: FormGroup;
   formErrors:Map<string, string>;
   validationMessages:Map<string, Map<string, string>>;
+
   constructor(private dataService: DataService,
-    private router: Router,
     private formBuilder: FormBuilder) {
       this.formErrors = new Map([
         ['name', ''],
@@ -52,7 +49,6 @@ export class ReviewComponent implements OnInit {
 
   async onSubmit(form: FormGroup) {
     if (form.valid) {
-      // dodac recenzje
       this.dataService.postReview(form.value.name,form.value.stars,form.value.description).subscribe(data => {
       });
       form.reset();

@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { DataService } from 'src/app/shared/data.service';
-import { FakeReservation } from 'src/app/shared/fakereservation';
-import { Reservation } from 'src/app/shared/reservation.model';
 
 @Component({
   selector: 'app-singlecust',
@@ -17,8 +14,7 @@ export class SinglecustComponent implements OnInit {
   validationMessages:Map<string, Map<string, string>>;
   fetchedReservations: any = [];
 
-  constructor(private router: Router,
-    private dataService: DataService,
+  constructor(private dataService: DataService,
     private formBuilder: FormBuilder) {
       this.formErrors = new Map([
         ['email', '']
@@ -44,14 +40,13 @@ export class SinglecustComponent implements OnInit {
 
   async onSubmit(form: FormGroup) {
     if (form.valid) {
-      // wyswietlic rezerwacje customera albo komunikat ze nie ma takiego
       this.fetchedReservations = this.dataService.getClientReservations(form.value.email).pipe(first()).subscribe((res:any) => {
         res.map((el:any) => {
           el.start_date = el.start_date.split('T')[0];
           el.end_date = el.end_date.split('T')[0];
         });
         this.fetchedReservations = res;
-        console.log(res);
+        // console.log(res);
       });
       console.log('reservations found!');
       form.reset();

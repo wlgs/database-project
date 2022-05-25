@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Reservation } from '../shared/reservation.model';
+import { first } from 'rxjs';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-reservation',
@@ -14,7 +14,7 @@ export class ReservationComponent implements OnInit {
   formErrors:Map<string, string>;
   validationMessages:Map<string, Map<string, string>>;
 
-  constructor(private router: Router,
+  constructor(private dataService: DataService,
     private formBuilder: FormBuilder) {
       this.formErrors = new Map([
         ['room_type', ''],
@@ -50,7 +50,9 @@ export class ReservationComponent implements OnInit {
   async onSubmit(form: FormGroup) {
     if (form.valid) {
       // dodac rezerwacje
-      console.log('added new reservation!')
+      this.dataService.makeReservation(form.value.start_date,form.value.end_date,form.value.room_type,form.value.email).pipe(first()).subscribe(res => {
+        console.log(res);
+      })
       form.reset();
     } else {
       this.checkValidity('ignore-dirty');

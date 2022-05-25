@@ -16,7 +16,6 @@ export class UpdateresComponent implements OnInit {
   validationMessages:Map<string, Map<string, string>>;
 
   constructor(private dataService: DataService,
-    private router: Router,
     private formBuilder: FormBuilder) {
       this.formErrors = new Map([
         ['id', ''],

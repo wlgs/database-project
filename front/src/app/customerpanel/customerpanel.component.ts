@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { DataService } from '../shared/data.service';
-import { FakeReservation } from '../shared/fakereservation';
-import { Reservation } from '../shared/reservation.model';
 
 @Component({
   selector: 'app-customerpanel',
@@ -18,7 +15,6 @@ export class CustomerpanelComponent implements OnInit {
   fetchedReservations: any = [];
 
   constructor(private dataService: DataService,
-    private router: Router,
     private formBuilder: FormBuilder) {
       this.formErrors = new Map([
         ['email', ''],
@@ -44,7 +40,6 @@ export class CustomerpanelComponent implements OnInit {
 
   async onSubmit(form: FormGroup) {
     if (form.valid) {
-      // wyswietlic rezerwacje customera
       this.fetchedReservations = this.dataService.getClientReservations(form.value.email).pipe(first()).subscribe((res:any) => {
         res.map((el:any) => {
           el.start_date = el.start_date.split('T')[0];
