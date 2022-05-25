@@ -170,15 +170,15 @@ app.get('/rooms/:number', (req, res) => {
 
 app.get('/reservations/:id', async (req, res) => {
     console.log("Got request for -> reservations/", req.params.id);
-    if (req.params.id.split('-').length > 1){
+    if (req.params.id.split('-').length > 1) {
         //handle date request
         console.log("DATE DETECTED");
         let pipeline = [{
-            $project:{
+            $project: {
                 start_date: {
                     $toDate: "$start_date"
                 },
-                end_date:{
+                end_date: {
                     $toDate: '$end_date'
                 },
                 status: '$status',
@@ -187,17 +187,17 @@ app.get('/reservations/:id', async (req, res) => {
         },
         {
             $match: {
-              'start_date': {$lte: new Date(req.params.id)}
+                'start_date': { $lte: new Date(req.params.id) }
             }
         },
         {
             $match: {
-              'end_date': {$gte: new Date(req.params.id)}
+                'end_date': { $gte: new Date(req.params.id) }
             }
         },
         {
             $match: {
-                'status': {$not: {$eq: 'canceled'}}
+                'status': { $not: { $eq: 'canceled' } }
             }
         }]
 
@@ -390,42 +390,49 @@ app.get('/rooms/:from/:to', async (req, res) => {
 
     let pipeline = [{
         $lookup: {
-          from: 'reservations',
-          localField: 'room_number',
-          foreignField: 'room_number',
-          as: 'dataArr'
+            from: 'reservations',
+            localField: 'room_number',
+            foreignField: 'room_number',
+            as: 'dataArr'
         }
     },
     {
         $project: {
             room_number: '$room_number',
             type: '$type',
-            dataArr: {$map: {
-                input: '$dataArr',
-                as: 'dataEl',
-                in: {
-                    start_date: {
-                    $toDate: "$$dataEl.start_date"
+            dataArr: {
+                $map: {
+                    input: '$dataArr',
+                    as: 'dataEl',
+                    in: {
+                        start_date: {
+                            $toDate: "$$dataEl.start_date"
                         },
-                    end_date: {
-                    $toDate: "$$dataEl.end_date"
+                        end_date: {
+                            $toDate: "$$dataEl.end_date"
                         },
-                    status: "$$dataEl.status"
+                        status: "$$dataEl.status"
+                    }
                 }
-            }}
+            }
         }
     },
     {
-        $match:{
-            $or: [{'dataArr': {$not: {
-                $elemMatch: {
-                    $or: [{start_date: {$gte: new Date(req.params.from), $lte: new Date(req.params.to)}},
-                    {end_date: {$gte: new Date(req.params.from), $lte: new Date(req.params.to)}}],
-                    
-                    }}}
-                },
-                {
-                    'dataArr': {$elemMatch: {status: 'canceled'}}}]               
+        $match: {
+            $or: [{
+                'dataArr': {
+                    $not: {
+                        $elemMatch: {
+                            $or: [{ start_date: { $gte: new Date(req.params.from), $lte: new Date(req.params.to) } },
+                            { end_date: { $gte: new Date(req.params.from), $lte: new Date(req.params.to) } }],
+
+                        }
+                    }
+                }
+            },
+            {
+                'dataArr': { $elemMatch: { status: 'canceled' } }
+            }]
         }
     }]
     const aggCur = col_rooms.aggregate(pipeline);

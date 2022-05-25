@@ -105,8 +105,8 @@ db.rooms.aggregate([
         $match:{
             $or: [{'dataArr': {$not: {
                 $elemMatch: {
-                    $or: [{start_date: {$gte: ISODate('2022-05-07'), $lte: ISODate('2022-05-13')}},
-                    {end_date: {$gte: ISODate('2022-05-07'), $lte: ISODate('2022-05-13')}}],
+                    $or: [{start_date: {$gte: ISODate('2022-05-07'), $lte: ISODate('2022-05-08')}},
+                    {end_date: {$gte: ISODate('2022-05-07'), $lte: ISODate('2022-05-08')}}],
                     
                     }}}
                 },
