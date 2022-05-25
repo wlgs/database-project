@@ -382,6 +382,65 @@ app.patch('/reservations/:id', (req, res) => {
     })
 });
 
+app.get('/rooms/:from/:to', async (req, res) => {
+    console.log("Got request GET for /rooms");
+    if (req.params.from == undefined || req.params.to == undefined) {
+        res.status(400).send("Bad params provided");
+    }
+
+    let pipeline = [{
+        $lookup: {
+          from: 'reservations',
+          localField: 'room_number',
+          foreignField: 'room_number',
+          as: 'dataArr'
+        }
+    },
+    {
+        $project: {
+            room_number: '$room_number',
+            type: '$type',
+            dataArr: {$map: {
+                input: '$dataArr',
+                as: 'dataEl',
+                in: {
+                    start_date: {
+                    $toDate: "$$dataEl.start_date"
+                        },
+                    end_date: {
+                    $toDate: "$$dataEl.end_date"
+                        },
+                    status: "$$dataEl.status"
+                }
+            }}
+        }
+    },
+    {
+        $match:{
+            $or: [{'dataArr': {$not: {
+                $elemMatch: {
+                    $or: [{start_date: {$gte: new Date(req.params.from), $lte: new Date(req.params.to)}},
+                    {end_date: {$gte: new Date(req.params.from), $lte: new Date(req.params.to)}}],
+                    
+                    }}}
+                },
+                {
+                    'dataArr': {$elemMatch: {status: 'canceled'}}}]               
+        }
+    }]
+    const aggCur = col_rooms.aggregate(pipeline);
+    console.log("DOCS:")
+    var resultsArray = new Array();
+    await aggCur.forEach(doc => {
+        console.log(doc);
+        resultsArray.push({
+            room_number: doc.room_number,
+            type: doc.type
+        })
+    })
+    res.send(JSON.stringify(resultsArray));
+});
+
 app.listen(4269, () => {
     console.log('Example app listening on port 4269!');
 });
