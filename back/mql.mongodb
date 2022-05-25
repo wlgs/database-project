@@ -1,0 +1,122 @@
+
+use('warsaw');
+db.reviews.aggregate(
+  [
+    {
+      $lookup: {
+        from: 'clients',
+        localField: 'client_id',
+        foreignField: '_id',
+        as: 'dataArr'
+      }
+    },
+    {
+      $match: {
+        $not: {
+          'dataArr': []
+        }
+      }
+    }
+  ]
+)
+
+// RESERVATIONS ACTIVE ON CERTAIN DAY:
+use('warsaw')
+db.reservations.aggregate([
+    {
+        $project:{
+            start_date: {
+                $toDate: "$start_date"
+            },
+            end_date:{
+                $toDate: '$end_date'
+            },
+            status: '$status',
+            room_number: '$room_number'
+        }
+    },
+    {
+        $match: {
+          'start_date': {$lte: ISODate('2022-05-07')}
+        }
+    },
+    {
+        $match: {
+          'end_date': {$gte: ISODate('2022-05-07')}
+        }
+    },
+    {
+        $match: {
+            'status': {$not: {$eq: 'canceled'}}
+        }
+    }
+])
+
+
+// ROOMS AND THEIR RESERVATIONS HISTORY
+use('warsaw')
+db.rooms.aggregate([
+    {
+        $lookup: {
+          from: 'reservations',
+          localField: 'room_number',
+          foreignField: 'room_number',
+          as: 'dataArr'
+        }
+    }
+])
+
+// AVAILABLE ROOMS ON CERTAIN DAY
+// VARS: 
+// type of room
+// date from
+// date to
+
+use('warsaw')
+db.rooms.aggregate([
+    {
+        $lookup: {
+          from: 'reservations',
+          localField: 'room_number',
+          foreignField: 'room_number',
+          as: 'dataArr'
+        }
+    },
+    {
+        $project: {
+            room_number: '$room_number',
+            type: '$type',
+            dataArr: {$map: {
+                input: '$dataArr',
+                as: 'dataEl',
+                in: {
+                    start_date: {
+                    $toDate: "$$dataEl.start_date"
+                        },
+                    end_date: {
+                    $toDate: "$$dataEl.end_date"
+                        },
+                    status: "$$dataEl.status"
+                }
+            }}
+        }
+    },
+    {
+        $match:{
+            $or: [{'dataArr': {$not: {
+                $elemMatch: {
+                    $or: [{start_date: {$gte: ISODate('2022-05-07'), $lte: ISODate('2022-05-13')}},
+                    {end_date: {$gte: ISODate('2022-05-07'), $lte: ISODate('2022-05-13')}}],
+                    
+                    }}}
+                },
+                {
+                    'dataArr': {$elemMatch: {$or: [{status: 'canceled'}, {status: 'pending'}]} }}]               
+        }
+    },
+    {
+        $match: {
+            'type': 'Single room with balcony'
+        }
+    }
+])
