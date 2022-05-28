@@ -24,6 +24,80 @@ Podstawowym celem projektu było zrealizowanie funkcjonalności zarządzania hot
 
 Korzystamy z bazy danych `MongoDB` wraz z backendem `Express.js` oraz technologia frontendowa - framework `Angular`.
 
+### Frontend
+
+Frontendowa część projektu została zrealizowana za pomocą frameworka Angular 13.
+
+Do komunikacji frontendu z backendem został stworzony jeden serwis - DataService.
+
+Znajdują się w nim następujące funkcje:
+
+  getClients() {
+    return this.http.get(`${url}/clients?skip=0&limit=1000`);
+  }
+
+Zwraca 1000 pierwszych klientów.
+
+  getReviews() {
+    return this.http.get(`${url}/reviews?skip=0&limit=100`);
+  }
+
+Zwraca 100 pierwszych recenzji.
+
+  postReview(id: string, stars: number, description: string) {
+    return this.http.post(`${url}/reviews`,{client_id: id, stars: stars, body: description});
+  }
+
+Postuje recenzję.
+
+  getClientReservations(mail: string) {
+    return this.http.get(`${url}/reservations/client/${mail}`);
+  }
+
+Zwraca rezerwacje klienta o podanym mailu.
+
+  cancelReservation(id:string) {
+    return this.http.patch(`${url}/reservations/${id}`,{status: 'canceled'});
+  }
+
+Zmienia status rezerwacji na canceled.
+
+  acceptReservation(id:string) {
+    return this.http.patch(`${url}/reservations/${id}`,{status: 'paid'});
+  }
+
+Zmienia status rezerwacji na paid.
+
+  makeReservation(start_date: string, end_date: string, room_type:string, email:string) {
+    return this.http.post(`${url}/reservations`,{start_date: start_date, end_date: end_date, type: room_type, email: email});
+  }
+
+Postuje rezerwację.
+
+  getEmployees() {
+    return this.http.get(`${url}/employees?skip=0&limit=1000`);
+  }
+
+Zwraca 1000 pierwszych pracowników hotelu.
+
+  getFreeRoomsByDay(from: string,to: string) {
+    return this.http.get(`${url}/rooms/${from}/${to}`);
+  }
+
+Zwraca pokoje dostępne do zarezerwowania pomiędzy dwiema datami.
+
+  getActiveReservationsByDay(date:string) {
+    return this.http.get(`${url}/reservations/${date}`);
+  }
+
+Zwraca rezerwacje które są aktywne danego dnia.
+
+  getRoomTypes() {
+    return this.http.get(`${url}/rooms_types`);
+  }
+
+Zwraca rodzaje pokojów dostępnych w naszym hotelu.
+
 ### Baza danych
 
 W bazie danych trzymamy następujące kolekcje:
