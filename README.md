@@ -32,69 +32,91 @@ Do komunikacji frontendu z backendem został stworzony jeden serwis - DataServic
 
 Znajdują się w nim następujące funkcje:
 
+```ts
   getClients() {
     return this.http.get(`${url}/clients?skip=0&limit=1000`);
   }
+```
 
 Zwraca 1000 pierwszych klientów.
 
+```ts
   getReviews() {
     return this.http.get(`${url}/reviews?skip=0&limit=100`);
   }
+```
 
 Zwraca 100 pierwszych recenzji.
 
+```ts
   postReview(id: string, stars: number, description: string) {
     return this.http.post(`${url}/reviews`,{client_id: id, stars: stars, body: description});
   }
+```
 
 Postuje recenzję.
 
+```ts
   getClientReservations(mail: string) {
     return this.http.get(`${url}/reservations/client/${mail}`);
   }
+```
 
 Zwraca rezerwacje klienta o podanym mailu.
 
+```ts
   cancelReservation(id:string) {
     return this.http.patch(`${url}/reservations/${id}`,{status: 'canceled'});
   }
+```
 
 Zmienia status rezerwacji na canceled.
 
+```ts
   acceptReservation(id:string) {
     return this.http.patch(`${url}/reservations/${id}`,{status: 'paid'});
   }
+```
 
 Zmienia status rezerwacji na paid.
 
+```ts
   makeReservation(start_date: string, end_date: string, room_type:string, email:string) {
     return this.http.post(`${url}/reservations`,{start_date: start_date, end_date: end_date, type: room_type, email: email});
   }
+```
 
 Postuje rezerwację.
 
+```ts
   getEmployees() {
     return this.http.get(`${url}/employees?skip=0&limit=1000`);
   }
+```
 
 Zwraca 1000 pierwszych pracowników hotelu.
 
+```ts
   getFreeRoomsByDay(from: string,to: string) {
     return this.http.get(`${url}/rooms/${from}/${to}`);
   }
+```
 
 Zwraca pokoje dostępne do zarezerwowania pomiędzy dwiema datami.
 
+```ts
   getActiveReservationsByDay(date:string) {
     return this.http.get(`${url}/reservations/${date}`);
   }
+```
 
 Zwraca rezerwacje które są aktywne danego dnia.
 
+```ts
   getRoomTypes() {
     return this.http.get(`${url}/rooms_types`);
   }
+```
 
 Zwraca rodzaje pokojów dostępnych w naszym hotelu.
 
