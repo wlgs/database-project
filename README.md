@@ -122,6 +122,10 @@ Zwraca rodzaje pokojów dostępnych w naszym hotelu.
 
 ### Baza danych
 
+Dane do bazy danych pozyskiwaliśmy z [https://json-generator.com/](https://json-generator.com/).
+
+Odpowiednie pliki generatora są w folderze [__gens__](./__gens__/).
+
 W bazie danych trzymamy następujące kolekcje:
 
 #### clients
@@ -143,6 +147,7 @@ Struktura:
 Podstawowe informacje o kliencie.
 
 #### employees
+
 ```json
 {  
     "_id": "628cf1dac252f973626140ee",
@@ -417,4 +422,4 @@ Pozostałe query bazowały na prostym `find`
 
 ### Backend - endpointy
 
-tba...
+Backend wykonaliśmy w frameworku Express.js.
