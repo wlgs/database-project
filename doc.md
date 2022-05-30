@@ -395,3 +395,7 @@ db.rooms.aggregate([
     }
 ])
 ```
+
+## Testy
+
+Testy poszczególnych endpointów/requestów wykonywaliśmy poprzez `Postman`.
