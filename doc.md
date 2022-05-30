@@ -258,7 +258,15 @@ Przykładowe dokumenty - tu przykład na kolekcji `logs-reservations`
 
 Dane pochodzą z odpowiedniego triggera - w dokumencie mamy pełne informacje o zmianie - możemy łatwo odtworzyć lub zrevertować zmianę.
 
+Kolekcje w naszej bazie danych
+
+![Kolekcje](./md-assets/collections.jpg)
+
 ## Backend
+
+Testowanie endpointów w `Postman`.
+
+![Postman](./md-assets/postman.jpg)
 
 Z ciekawszych zapytań, które kierujemy do bazy (odpowiednie query):
 
@@ -401,6 +409,10 @@ db.rooms.aggregate([
 Niestety MongoDB Atlas zezwala jedynie na 5 triggerów na cały klaster. Aktualnie na naszej bazie danych działa 5 triggerów, które sprawują funkcje loggera - po każdej zmianie tj. delete/update/insert, logger udokumentuje daną akcję w odpowiedniej kolekcji np. `logs-reservations`.
 
 Z racji braku slotów na nowe triggery, nie byliśmy w stanie dodać triggerów checkujących poprawność danych - jak np. statusy rezerwacji - jeden z trzech: `paid`, `pending`, `canceled`, lub daty w rezerwacjach poprawnie wpisane `start_date < end_date`.
+
+Triggery zaimplementowane w MongoDB Atlas. (maksymalnie 5 na klaster)
+
+![Triggery](./md-assets/triggers.jpg)
 
 ## Testy
 
